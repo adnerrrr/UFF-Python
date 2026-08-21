@@ -58,14 +58,14 @@ def limpa(): # funcao para limpar o terminal
     else:
         system('clear')
 
-def main():
+def principal():
     limpa()
     fita = input("Digite uma fita de DNA: ").upper()
     k = int(input("Qual o tamanho dos palindromos que quer encontrar? "))
 
     if k < 4:
         print("k tem que ser maior ou igual a 4")
-        main()
+        principal()
         return
     
     fitaR = reversa(fita)
@@ -75,9 +75,14 @@ def main():
         if len(dados[i]) == k:
             print("Sequencia: " + dados[i] + " | Posicao: " + str(dados[i+1]))
 
-y = True
-while y:
+def main():
+    global dados
+    y = True
+    while y:
+        principal()
+        dados = ["", 0]
+        if input("Gostaria de testar outra sequencia? (s/n) ") != "s":
+            y = False # mantem o loop ativo ate que o usuario nao queira mais usar
+
+if __name__ == "__main__":
     main()
-    dados = ["", 0]
-    if input("Gostaria de testar outra sequencia? (s/n) ") != "s":
-        y = False # mantem o loop ativo ate que o usuario nao queira mais usar
