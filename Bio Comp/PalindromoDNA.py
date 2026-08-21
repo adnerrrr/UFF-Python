@@ -17,22 +17,24 @@ bases = {
     "G" : "C"
 } # dicionario para traducao das fitas
 
-dados = []
+dados = ["", 0]
 
 def reversa(fitaOG):
     fitaR = ""
     for i in range(len(fitaOG)):
-        fitaR += bases[fitaOG[i]] # cria a fita reversa
+        fitaR += bases[fitaOG[i]] # cria a fita complementar
     return fitaR
 
 def limitaSequencia(fitaOG, fitaR, pos):
     global dados
+
     for i in range(len(fitaOG), pos, -1): # percorre a sequencia de tras pra frente procurando letras iguais
+
         if (fitaOG[pos] == fitaR[i-1]):
             # quando achar letras iguais checamos se e palindromo
             if checaPalindromo(fitaOG[pos:i], fitaR[pos:i]):
-                if fitaOG[pos:i] not in dados: # garante que nao tem repeticao
-                    dados += (fitaOG[pos:i], pos+1)
+                if (fitaOG[pos:i] not in dados) and (fitaOG[pos:i] not in dados[-2]): # garante que nao tem repeticao e que o palindromo e maximal
+                    dados += [fitaOG[pos:i], pos+1]
 
     if pos != len(fitaOG):
         limitaSequencia(fitaOG, fitaR, pos+1) # garante recursividade para checar toda a fita original
@@ -77,6 +79,6 @@ y = True
 while y:
     main()
     print(dados)
-    dados = []
+    dados = ["", 0]
     if input("Gostaria de testar outra sequencia? (s/n) ") != "s":
         y = False # mantem o loop ativo ate que o usuario nao queira mais usar
