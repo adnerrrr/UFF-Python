@@ -78,7 +78,6 @@ def main():
 y = True
 while y:
     main()
-    print(dados)
     dados = ["", 0]
     if input("Gostaria de testar outra sequencia? (s/n) ") != "s":
         y = False # mantem o loop ativo ate que o usuario nao queira mais usar
