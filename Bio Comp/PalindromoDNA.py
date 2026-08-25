@@ -44,13 +44,13 @@ def checaPalindromo(seq1, seq2):
     for i in range(len(seq1)): # compara a sequencia original com a complementar invertida
         if seq1[i] != seq[i]:
             return False
-    return True        
+    return True
 
 def inverte(seq): # inverte a sequencia complementar para facilitar a comparacao com a original
     inv = ""
     for i in range(len(seq) - 1, -1, -1):
         inv += seq[i]
-    return inv 
+    return inv
 
 def limpa(): # funcao para limpar o terminal
     if name == 'nt':
