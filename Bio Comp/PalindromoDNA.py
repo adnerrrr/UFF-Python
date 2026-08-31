@@ -1,14 +1,9 @@
 from os import name, system
 
-# Faça um programa na sua linguagem de programação favorita (python ou linguagem C (ou C++)) que dado 
-# um valor k (inteiro e par). encontre todas as sub-cadeias que sejam palíndromos maximais de tamanho k (k>=4), 
-# e imprima o palíndromo a posição de início de cada sub-cadeia correspondente (se um palíndromo se repetir, 
+# Faça um programa na sua linguagem de programação favorita (python ou linguagem C (ou C++)) que dado
+# um valor k (inteiro e par). encontre todas as sub-cadeias que sejam palíndromos maximais de tamanho k (k>=4),
+# e imprima o palíndromo a posição de início de cada sub-cadeia correspondente (se um palíndromo se repetir,
 # você pode só imprimir as posições onde ele aparece e imprimi-lo apenas uma vez).
-
-# Teste seu programa para as sequências abaixo:
-
-# ACTATCCGCGTTTTTTCCAAAGTGAGCAAAAATGAAAGCTACGATCCCCCCCCCCTGAAGTTATATG
-# AGTGTTTTTGATAGAGCGTAAATATAAAACGTTTTATAGCCGTAATCGAAAAGCGCGATACTAAAAAAAAAACTATGAAAAAAAACTCTTG
 
 bases = {
     "A" : "T",
@@ -35,9 +30,6 @@ def limitaSequencia(fitaOG, fitaR, pos):
             if checaPalindromo(fitaOG[pos:i], fitaR[pos:i]):
                 if (fitaOG[pos:i] not in dados) and (fitaOG[pos:i] not in dados[-2]): # garante que nao tem repeticao e que o palindromo e maximal
                     dados += [fitaOG[pos:i], pos+1]
-
-    if pos != len(fitaOG):
-        limitaSequencia(fitaOG, fitaR, pos+1) # garante recursividade para checar toda a fita original
 
 def checaPalindromo(seq1, seq2):
     seq = inverte(seq2)
@@ -69,7 +61,8 @@ def principal():
         return
     
     fitaR = reversa(fita)
-    limitaSequencia(fita, fitaR, 0)
+    for i in range(0, len(fita)):
+        limitaSequencia(fita, fitaR, i)
     
     for i in range(0,len(dados),2):
         if len(dados[i]) == k:
@@ -80,6 +73,7 @@ def main():
     y = True
     while y:
         principal()
+        print(dados)
         dados = ["", 0]
         if input("Gostaria de testar outra sequencia? (s/n) ") != "s":
             y = False # mantem o loop ativo ate que o usuario nao queira mais usar
