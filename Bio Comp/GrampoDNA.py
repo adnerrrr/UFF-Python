@@ -73,6 +73,7 @@ def achaGrampo(fita, pref, k):
 def guardaGrampo(pref, arco, suf):
     global grampos, pos
     grampos.append(Grampo(pref, arco, suf, pos))
+    pos += len(pref) * 2 + len(arco) - 1
 
 def testaFita(fita, k):
     global pos
